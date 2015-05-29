@@ -9,7 +9,6 @@ class House
     @cost = cost
     @down_payment = down_payment
     @sold = sold
-    @short_sale = short_sale
     @has_tenants = has_tenants
   end
 
