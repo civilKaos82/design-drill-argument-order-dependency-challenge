@@ -48,13 +48,13 @@ end
 When we define a method with individual parameters, it's fairly straightforward to provide default values (see Figure 2).  When our methods accept a hash, we need to check the keys in the hash.  If the key exists, use its value; otherwise, use this value (See Figure 2).  Unfortunately, checking for keys in this way can cause issues when the value of the key is falsey:  `nil` or `false`.  We get around this by using `Hash#fetch`.  Read [Avdi Grim's post](http://devblog.avdi.org/2009/03/16/go-fetch/) on how to use `#fetch` to avoid mishandling falsey values.
 
 
-##Releases
+## Releases
+### Release 0: Use Named Arguments
+Imagine we've been designing a `HouseListing` class for a real estate web application.  Over time the data that an individual listing holds has grown to the point that now, in order to instantiate a `HouseListing` object, we need to pass six required arguments all in the right order, and then there are four optional arguments which have default values.
 
-###Release 0 : Use named arguments
+We're going to update the class to initialize with named arguments (i.e., a hash) instead of the current list of arguments.  We've updated our tests, which are now all failing with a wrong number of arguments error.
 
-Take a look at the `House#initialize` method. My, how many parameters it has!
-
-Refactor the method to use named arguments instead.
+Refactor the `HouseListing#initialize` method to use named arguments.
 
  
 
