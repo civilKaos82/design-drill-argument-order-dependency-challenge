@@ -1,9 +1,5 @@
 # Design Drill: Argument Order Dependency 
  
-##Learning Competencies 
-
-* Write code with accurate method definition, arguments, and return values
-* Recognize the characteristics of good code and Best Practices, and implement these in code.
 
 ##Summary 
 
