@@ -1,7 +1,21 @@
 require_relative '../house_listing'
 
 describe HouseListing do
-  let(:house_listing) { HouseListing.new("1883 Atwood Rd, Toledo, OH 43615", "$75,000", 1003, "single family", "5097751", 1947, 2, 1, false, false) }
+  let(:listing_details) do
+    { :address        => "1883 Atwood Rd, Toledo, OH 43615",
+      :asking_price   => "$75,000",
+      :square_footage => 1003,
+      :listing_type   => "single family",
+      :listing_id     => "5097751",
+      :year_built     => 1947,
+      :bedroom_count  => 2,
+      :bathroom_count => 1,
+      :active         => false,
+      :occupied       => false }
+  end
+
+  let(:house_listing) { HouseListing.new(listing_details) }
+
 
   it "has an address" do
     expect(house_listing.address).to eq "1883 Atwood Rd, Toledo, OH 43615"
@@ -44,22 +58,32 @@ describe HouseListing do
   end
 
   describe "default values" do
-    let(:house_listing_with_defaults) { HouseListing.new("1883 Atwood Rd, Toledo, OH 43615", "$75,000", 1003, "single family", "5097751", 1947) }
+    let(:listing_details) do
+      { :address        => "1883 Atwood Rd, Toledo, OH 43615",
+        :asking_price   => "$75,000",
+        :square_footage => 1003,
+        :listing_type   => "single family",
+        :listing_id     => "5097751",
+        :year_built     => 1947 }
+    end
+
+    let(:house_listing) { HouseListing.new(listing_details) }
+
 
     it "defaults to bedroom count of 3" do
-      expect(house_listing_with_defaults.bedroom_count).to eq 3
+      expect(house_listing.bedroom_count).to eq 3
     end
 
     it "defaults to bathroom count of 2" do
-      expect(house_listing_with_defaults.bathroom_count).to eq 2
+      expect(house_listing.bathroom_count).to eq 2
     end
 
     it "defaults to being active" do
-      expect(house_listing_with_defaults.active?).to be true
+      expect(house_listing.active?).to be true
     end
 
     it "defaults to being occupied" do
-      expect(house_listing_with_defaults.occupied?).to be true
+      expect(house_listing.occupied?).to be true
     end
   end
 end
