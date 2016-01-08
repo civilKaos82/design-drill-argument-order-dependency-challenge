@@ -56,10 +56,9 @@ We're going to update the class to initialize with named arguments (i.e., a hash
 
 Refactor the `HouseListing#initialize` method to use named arguments.
 
+
+## Conclusion
+Using named arguments is a way to make our code less brittle.  To pass arguments to a method, we still need to know what our keys should be, but we are not constrained to any particular order.  As we move through Dev Bootcamp and begin working with libraries like Active Record, we'll see this technique being used.
  
-
-<!-- ##Optimize Your Learning  -->
-
-##Resources
 
 [Practical Object-Oriented Design in Ruby]: http://www.poodr.com/
