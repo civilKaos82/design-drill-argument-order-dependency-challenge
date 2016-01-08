@@ -1,24 +1,33 @@
 # Design Drill: Argument Order Dependency 
  
+## Summary
+In [Practical Object-Oriented Design in Ruby][] (POODR),  Sandi Metz encourages designing applications that are easy to change.  We're going to look at one strategy for making our applications less brittle and costly to change:  removing argument order dependencies from our methods.
 
-##Summary 
+When a method accepts arguments, it creates a *dependency*: any part of our code that calls the method must know which arguments to pass and in which order to pass them.  This isn't too problematic when the method only accepts one or two arguments, but beyond this, it could be difficult to remember their order.
 
-Once methods start taking more than one or two parameters, it can be difficult to remember their order.
+And what happens if we decide to add a parameter to our method or to remove one?  What if we want to change the order in which arguments should be passed.  Well, we'd have to find every place where we call the method and change the arguments accordingly.
 
-When a method expects its arguments to arrive in a particular order, it creates a *dependency*. The rest of your code now must *know* about this order, and that makes it brittle. What happens if you want to add or remove a parameter? Now you have to find every place where you call that method and change the argument order accordingly.
-
-A good design solution for this problem is to use **named arguments**. In Ruby, we can implement this design pattern by passing in a hash as a method argument, using the keys of the hash as names for the arguments.
+A good design solution for this problem is to use *named arguments*. In Ruby, one way to implement this design pattern is for our our methods to expect a hash rather than individual arguments.  The individual arguments become expected keys in the hash.  See Figure 1 for an example.
 
 ```ruby
-def make_a_speech(components = {})
-  introduction = components[:introduction]
-  inappropriate_anecdote = components[:inappropriate_anecdote]
-  long_winded_moralizing = components[:long_winded_moralizing]
-  conclusion = components[:conclusion]
+# From ...
+Album.new('Kidz Bop 31', 'Kidz Bop Kids', 'January 15, 2016', 'Kidz Bop', '51:12', 'B018TFEU4O')
 
-  # Now put it all together...
-end
+
+# To ...
+album_details = {
+  :title        => 'Kidz Bop 31',
+  :artist       => 'Kidz Bop Kids',
+  :release_date => 'January 15, 2016',
+  :label        => 'Kidz Bop',
+  :run_time     => '51:12'
+  :asin         => 'B018TFEU4O'
+}
+
+Album.new(album_details)
 ```
+*Figure 1*.  Moving from multiple arguments to one hash.
+
 
 ##Releases
 
@@ -63,3 +72,5 @@ The way to get around this is use `Hash#fetch`. Go read [Avdi Grim's post](http:
 <!-- ##Optimize Your Learning  -->
 
 ##Resources
+
+[Practical Object-Oriented Design in Ruby]: http://www.poodr.com/
