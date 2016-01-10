@@ -7,7 +7,7 @@ When a method accepts arguments, it creates a *dependency*: any part of our code
 
 And what happens if we decide to add a parameter to our method or to remove one?  What if we want to change the order in which arguments should be passed?  Well, we'd have to find every place where we call the method and change the arguments accordingly.
 
-A good design solution for this problem is to use *named arguments*. In Ruby, one way to implement this design pattern is for our our methods to expect a hash rather than individual arguments.  The individual arguments become expected keys in the hash.  See Figure 1 for an example.
+A good design solution for this problem is to use *named arguments*. In Ruby, one way to implement this design pattern is for our methods to expect a hash rather than individual arguments.  The individual arguments become expected keys in the hash.  See Figure 1 for an example.
 
 ```ruby
 # From ...
