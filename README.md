@@ -1,11 +1,11 @@
-# Design Drill: Argument Order Dependency 
- 
+# Design Drill: Argument Order Dependency
+
 ## Summary
 In [Practical Object-Oriented Design in Ruby][] (POODR),  Sandi Metz encourages designing applications that are easy to change.  We're going to look at one strategy for making our applications less brittle and costly to change:  removing argument order dependencies from our methods.
 
 When a method accepts arguments, it creates a *dependency*: any part of our code that calls the method must know which arguments to pass and in which order to pass them.  This isn't too problematic when the method only accepts one or two arguments, but beyond this, it could be difficult to remember their order.
 
-And what happens if we decide to add a parameter to our method or to remove one?  What if we want to change the order in which arguments should be passed.  Well, we'd have to find every place where we call the method and change the arguments accordingly.
+And what happens if we decide to add a parameter to our method or to remove one?  What if we want to change the order in which arguments should be passed?  Well, we'd have to find every place where we call the method and change the arguments accordingly.
 
 A good design solution for this problem is to use *named arguments*. In Ruby, one way to implement this design pattern is for our our methods to expect a hash rather than individual arguments.  The individual arguments become expected keys in the hash.  See Figure 1 for an example.
 
@@ -39,7 +39,7 @@ end
 # With named arguments as a hash ...
 def tip(args)
   tip_percentage = args[:tip_percentage] || 0.18
-  
+
   args[:bill] * tip_percentage
 end
 ```
@@ -59,6 +59,6 @@ Refactor the `HouseListing#initialize` method to use named arguments.
 
 ## Conclusion
 Using named arguments is a way to make our code less brittle.  To pass arguments to a method, we still need to know what our keys should be, but we are not constrained to any particular order.  As we move through Dev Bootcamp and begin working with libraries like Active Record, we'll see this technique being used.
- 
+
 
 [Practical Object-Oriented Design in Ruby]: http://www.poodr.com/
